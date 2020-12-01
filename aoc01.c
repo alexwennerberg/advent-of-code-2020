@@ -12,7 +12,7 @@ int main() {
   int entry;
   int c;
   while(scanf("%d", &entry) == 1) {
-    if(entrycount[TARGET - entry] != 0) {
+    if(entrycount[TARGET - entry] == 1) {
       // Part 1
       printf("%d\n", entry * (TARGET - entry));
     } 
@@ -22,13 +22,12 @@ int main() {
   }
 
   for (int i = 0; i < c ; i ++) {
-    for (int j = i; j < c; j++) {
-      for (int k = j; k < c; k ++) {
-        if ((entries[i] + entries[j] + entries[k]) == TARGET) {
+    for (int j = i+1; j < c; j++) {
+      int diff = 2020 - entries[i] - entries[j];
+      if (diff > 0 && entrycount[diff] == 1) {
           // Part 2
-          printf("%d\n", entries[i] * entries[j] * entries[k]);
+          printf("%d\n", entries[i] * entries[j] * diff);
           return 0;
-        }
       }
     }
   }
