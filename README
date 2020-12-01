@@ -3,3 +3,7 @@ alexandria ocasio-cortez 2020
 written in C
 
 I am not good at C
+
+make aoc[number] to build
+
+./aoc[number] reads from stdin
