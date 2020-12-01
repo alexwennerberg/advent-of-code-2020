@@ -26,8 +26,8 @@ int main() {
 
   // brute force part 2
   for (int i = 0; i < c ; i ++) {
-    for (int j = 0; j < c; j++) {
-      for (int k = 0; k < c; k ++) {
+    for (int j = i; j < c; j++) {
+      for (int k = j; k < c; k ++) {
         if ((entries[i] + entries[j] + entries[k]) == TARGET) {
           printf("%d\n", entries[i] * entries[j] * entries[k]);
           return 0;
