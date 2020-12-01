@@ -7,3 +7,5 @@ I am not good at C
 make aoc[number] to build
 
 ./aoc[number] reads from stdin
+
+Output is part 1 solution, then part 2 solution, newline delimited.

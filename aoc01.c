@@ -2,20 +2,38 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define TARGET 2020
+#define MAX_LENGTH 200
+
 int main() {
-  // input items assumed 0 < input < 2020 
-  int entries[2020];
+  // input items assumed 0 < input < TARGET  and len(items) < MAX_LENGTH
+  int entrycount[TARGET];
+  int entries[MAX_LENGTH];
   // initialize to 0
-  for (int i = 0; i < 2020; i ++) {
-    entries[i] = 0;
+  for (int i = 0; i < TARGET; i ++) {
+    entrycount[i] = 0;
   }
   int entry;
+  int c;
   while(scanf("%d", &entry) == 1) {
-    if(entries[2020 - entry] == 1) {
-      printf("%d", entry * (2020 - entry));
-      return 0;
+    if(entrycount[TARGET - entry] != 0) {
+      printf("%d\n", entry * (TARGET - entry));
     } 
-    entries[entry] = 1;
+    entries[c] = entry;
+    entrycount[entry] = 1;
+    c++;
+  }
+
+  // brute force part 2
+  for (int i = 0; i < c ; i ++) {
+    for (int j = 0; j < c; j++) {
+      for (int k = 0; k < c; k ++) {
+        if ((entries[i] + entries[j] + entries[k]) == TARGET) {
+          printf("%d\n", entries[i] * entries[j] * entries[k]);
+          return 0;
+        }
+      }
+    }
   }
   return 1;
 }
