@@ -43,5 +43,5 @@ int main() {
     * get_trees(slope, 1, 2);
   // Part 2
   printf("%d", result);
-
+  return 0;
 }
