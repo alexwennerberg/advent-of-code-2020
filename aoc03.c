@@ -4,6 +4,23 @@
 #define INPUT_LENGTH 323
 #define INPUT_WIDTH 31
 
+int get_trees(char slope[INPUT_LENGTH][INPUT_WIDTH], int right, int down) {
+    int x = 0;
+    int y = 0;
+    int trees = 0;
+    while(y < INPUT_LENGTH - 1){
+      x = x + right;
+      if(x >= INPUT_WIDTH){
+        x = x - INPUT_WIDTH;
+      }
+      y = y + down;
+      if(slope[y][x] == '#'){
+        trees++;
+      }
+    }
+    return trees;
+}
+
 int main() {
   char slope[INPUT_LENGTH][INPUT_WIDTH]; 
   int row = 0;
@@ -14,19 +31,16 @@ int main() {
     }
     row++;
   }
-  int x = 0;
-  int y = 0;
-  int trees = 0;
-  while(y < INPUT_LENGTH - 1){
-    x = x + 3;
-    if(x >= INPUT_WIDTH){
-      x = x - INPUT_WIDTH;
-    }
-    y = y + 1;
-    if(slope[y][x] == '#'){
-      trees++;
-    }
-  }
+  
+
+  int slope31 = get_trees(slope, 3, 1);
   // Part 1
-  printf("%d", trees);
+  printf("%d\n", slope31);
+  int result = slope31 
+    * get_trees(slope, 1, 1) 
+    * get_trees(slope, 5, 1) 
+    * get_trees(slope, 7, 1) 
+    * get_trees(slope, 1, 2);
+  printf("%d", result);
+
 }
