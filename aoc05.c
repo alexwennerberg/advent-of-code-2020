@@ -9,18 +9,16 @@ int seats[SEATS];
 
 int calc_id(char ticket[INPUT_LENGTH]) {
   int i;
-  int row = ticket[0] == 'B'? 1: 0;
-  int column = ticket[ROW_BITS] == 'R'? 1: 0;
-
+  int id = ticket[0] == 'B'? 1: 0;
   for(i=1; i < ROW_BITS; i++) {
-    row = row << 1;
-    if(ticket[i] == 'B') row++;
+    id = id << 1;
+    if(ticket[i] == 'B') id++;
   }
-  for(++i; i < 10; i++) {
-    column = column << 1;
-    if(ticket[i] == 'R') column++;
+  for(; i < ROW_BITS + COLUMN_BITS; i++) {
+    id = id << 1;
+    if(ticket[i] == 'R') id++;
   }
-  return row * (ROW_BITS + 1) + column;
+  return id;
 }
 
 int main() {
