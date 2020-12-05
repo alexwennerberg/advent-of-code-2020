@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string.h>
 
 #define INPUT_LENGTH 16
 #define SEATS 1000
@@ -31,7 +30,6 @@ int main() {
   }
   int i = SEATS-1;
   while(seats[i] == 0)  i--;
-
   // Part 1
   printf("%d\n", i);
   while(seats[i] == 1)  i--;
