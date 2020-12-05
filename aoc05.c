@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 #define INPUT_LENGTH 16
-#define SEATS 1000
+#define SEATS 1024
 #define ROW_BITS 7
 #define COLUMN_BITS 3
 
