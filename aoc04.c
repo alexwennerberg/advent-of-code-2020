@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 
 #define PASSPORT_LENGTH 256
@@ -47,13 +48,13 @@ int valid_passport(char passport[PASSPORT_LENGTH], int part) {
         }
       } else if (strcmp(field, "hgt") == 0) {
         if(value[2] == 'i' && value[3] == 'n'){
-          value[2] == '\0';
+          value[2] = '\0';
           int height = atoi(value);
           if(height > 76 || height < 59) {
             return 0;
           }
         } else if(value[3] == 'c' && value[4] == 'm') {
-          value[3] == '\0';
+          value[3] = '\0';
           int height = atoi(value);
           if(height > 193 || height < 150) {
             return 0;
