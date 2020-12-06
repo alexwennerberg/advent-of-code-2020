@@ -1,10 +1,5 @@
 #include <stdio.h>
 
-#define INPUT_LENGTH 16
-#define SEATS 1024
-#define ROW_BITS 7
-#define COLUMN_BITS 3
-
 int countb(int n) { 
     unsigned int count = 0; 
     while (n) { 
