@@ -89,7 +89,7 @@ int main() {
       p++;
     }
     if(p == 1024 ){
-      printf("%d\n", accumulator);
+      printf("Not in a loop -- %d\n", accumulator);
       return;
     }
   }
