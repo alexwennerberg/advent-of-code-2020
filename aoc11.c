@@ -4,12 +4,14 @@
 #define OCCUPIED '#'
 #define FLOOR '.'
 
-#define WIDTH 90
-#define HEIGHT 91
+/* #define WIDTH 90 */
+/* #define HEIGHT 91 */
+#define WIDTH 10
+#define HEIGHT 10
 
 char seats[HEIGHT][WIDTH];
 
-int swap_seats() { // returns n occupied
+int swap_seats(int mode) { // returns n occupied
   char newseats[HEIGHT][WIDTH];
   int x, y;
   int occupied = 0; 
@@ -84,14 +86,17 @@ int main () {
     }
   }
   int last = -1;
-  while(1) {
-    int occ = swap_seats();
-    if(occ == last){
-      printf("%d", occ);
-      break;
-    } else {
-      last = occ;
-    }
+  int occ;
+  int i;
+  while(occ != last ) {
+    last = occ;
+    // specify part number
+    occ = swap_seats(1);
     print_seats();
+    printf("%d\n", occ);
   }
+  /* while(swap_seats(2) != last) { */
+  /*   printf("%d\n", occ); */
+    /* print_seats(); */
+  /* } */
 }
