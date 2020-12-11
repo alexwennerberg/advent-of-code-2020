@@ -15,4 +15,5 @@ $(TARGET): $(TARGET).c
 	$(CC) $(CFLAGS) -o $(TARGET) $(TARGET).c
 
 clean: 
-	$(RM) $(TARGET)
+	find . -type f  -name 'aoc[0-9][0-9]'  -delete
+	$(RM) *.txt
