@@ -9,3 +9,5 @@ make aoc[number] to build
 ./aoc[number] reads from stdin
 
 Output is part 1 solution, then part 2 solution, newline delimited.
+
+acccidentally deleted day 12 and 13 -- will come back to them later
