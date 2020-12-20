@@ -6,7 +6,8 @@
 
 typedef char bitmask[MASK_SIZE];
 
-long long int memory[MEMORY_SIZE];
+long long int memory_v1[MEMORY_SIZE];
+long long int memory_v2[MEMORY_SIZE];
 
 void parse_mask(char* input_line, char* dest) {
     int i;
@@ -37,11 +38,15 @@ long long int apply_mask(long long int target, bitmask mask) {
   return target;
 }
 
-long long int get_memory_sum() {
+long long int get_memory_sum(int version) {
   int i;
   long long int result = 0;
   for(i=0; i<MEMORY_SIZE; i++) {
-    result += memory[i];
+    if(version == 1) {
+      result += memory_v1[i];
+    } else if(version == 2) {
+      result += memory_v2[i];
+    }
   }
   return result;
 }
@@ -56,8 +61,9 @@ int main () {
       parse_mask(input_line, mask);
     } else if ( input_line[1] == 'e' ) { // memory line
       parse_mem(input_line, &index, &target);
-      memory[index] = apply_mask(target, mask);
+      memory_v1[index] = apply_mask(target, mask);
     }
   }
-  printf("%lld\n", get_memory_sum());
+  printf("%lld\n", get_memory_sum(1));
+  printf("%lld\n", get_memory_sum(2));
 }
