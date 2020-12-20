@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 #define LINE_SIZE 64
-#define MEMORY_SIZE 99999
+#define MEMORY_SIZE 9999999
 #define MASK_SIZE 36
 
 typedef char bitmask[MASK_SIZE];
@@ -51,6 +51,36 @@ long long int get_memory_sum(int version) {
   return result;
 }
 
+/* a nightmare */
+void apply_memory_v2(int index, long long int target, bitmask mask) {
+  int i;
+  int newindex = index;
+  for(i=0; i<MASK_SIZE; i++) {
+      if(mask[i] == '1') {
+        newindex |= (1ULL << (MASK_SIZE - i - 1));
+      } else if(mask[i] == '0') {
+      } else if (mask[i] == 'X') {
+        mask[i] = '0';
+        int j;
+        bitmask newmask1;
+        bitmask newmask2;
+        for (j=0; j<MASK_SIZE; j++) {
+          newmask1[j] = mask[j];
+        }
+        newmask1[i] = '0';
+        index &= ~(1ULL << (MASK_SIZE - i - 1));
+        apply_memory_v2(index, target, newmask1);
+        for (j=0; j<MASK_SIZE; j++) {
+          newmask2[j] = mask[j];
+        }
+        newmask2[i] = '1';
+        apply_memory_v2(index, target, newmask2);
+      }
+    }
+    printf("%d %d %lld %s\n", index, newindex, target, mask);
+    memory_v2[newindex] = target;
+}
+
 int main () {
   char input_line[LINE_SIZE];
   bitmask mask;
@@ -62,6 +92,12 @@ int main () {
     } else if ( input_line[1] == 'e' ) { // memory line
       parse_mem(input_line, &index, &target);
       memory_v1[index] = apply_mask(target, mask);
+      bitmask v2_mask;
+      int i;
+      for (i=0; i<MASK_SIZE; i++) {
+        v2_mask[i] = mask[i];
+      }
+      apply_memory_v2(index, target, v2_mask);
     }
   }
   printf("%lld\n", get_memory_sum(1));
